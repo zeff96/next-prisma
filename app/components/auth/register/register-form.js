@@ -5,15 +5,10 @@ import { useFormState } from "react-dom";
 import { RegistrationButton } from "./signup-button";
 import { register } from "@/actions/register";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-
-const initialState = {
-  message: "",
-  error: "",
-};
+import { Social } from "../social/social";
 
 export const SignupForm = () => {
-  const [state, formAction] = useFormState(register, initialState);
+  const [state, formAction] = useFormState(register, undefined);
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gray-100">
       <form
@@ -73,9 +68,7 @@ export const SignupForm = () => {
           <RegistrationButton />
         </div>
         <hr />
-        <div>
-          <FcGoogle className="w-full cursor-pointer text-5xl border border-solid rounded-lg" />
-        </div>
+        <Social />
         <div className="text-center">
           <Link href="/auth/login">Already registered?</Link>
         </div>
