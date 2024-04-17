@@ -1,26 +1,27 @@
 "use client";
 
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import { useFormState } from "react-dom";
 import { LogginButton } from "./loggin-button";
 import { authenticate } from "@/actions/login";
-import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
-
-const initialState = {
-  message: "",
-  error: "",
-};
+import { Social } from "../social/social";
 
 export const LoginForm = () => {
-  const [state, formAction] = useFormState(authenticate, initialState);
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Another account already exists with the same e-mail address"
+      : "";
+  const [state, formAction] = useFormState(authenticate, undefined);
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gray-100">
       <form
         action={formAction}
         className="w-[400px] bg-white flex flex-col space-y-4 p-4 rounded-lg shadow-md "
       >
-        <h3 className="text-center">Login to account</h3>
+        <h3 className="text-center">Welcome back</h3>
         <div>
           <label htmlFor="email">
             Email
@@ -51,6 +52,11 @@ export const LoginForm = () => {
               {state?.errors}
             </p>
           )}
+          {urlError && (
+            <p className="w-full py-1 px-4 text-white bg-red-500 rounded-lg">
+              {urlError}
+            </p>
+          )}
           {state?.message && (
             <p className="w-full py-1 px-4 text-white bg-green-500 rounded-lg">
               {state?.message}
@@ -61,9 +67,7 @@ export const LoginForm = () => {
           <LogginButton />
         </div>
         <hr />
-        <div>
-          <FcGoogle className="w-full cursor-pointer text-5xl border border-solid rounded-lg" />
-        </div>
+        <Social />
         <div className="text-center">
           <Link href="/auth/registration">Don't have account?</Link>
         </div>
