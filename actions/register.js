@@ -13,9 +13,18 @@ export const register = async (_prevState, formData) => {
   });
 
   if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
+    const fieldErrors = validatedFields.error.flatten().fieldErrors;
+
+    if (typeof fieldErrors === "object") {
+      const errorString = Object.values(fieldErrors).join(", ");
+      return {
+        errors: errorString,
+      };
+    } else {
+      return {
+        errors: fieldErrors,
+      };
+    }
   }
 
   const { name, email, password } = validatedFields.data;
