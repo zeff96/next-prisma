@@ -68,8 +68,13 @@ export const LoginForm = () => {
         </div>
         <hr />
         <Social />
-        <div className="text-center">
+        <div className="text-center underline">
           <Link href="/auth/registration">Don't have account?</Link>
+        </div>
+        <div className="text-center underline">
+          <Link href="/auth/confirmation">
+            Didn't receive confirmation email? resend
+          </Link>
         </div>
       </form>
     </div>
