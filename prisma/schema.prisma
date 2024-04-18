@@ -13,6 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole{
+  ADMIN
+  USER
+}
+
 model Account {
   id                 String  @id @default(cuid())
   userId             String
@@ -38,12 +43,23 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   password      String?   @db.Text
+  role          UserRole  @default(USER)
   image         String?
   accounts      Account[]
   posts         Post[]
   comments      Comment[]
   likes         Like[]
   notifications Notification[]
+}
+
+model VerificationToken {
+  id String @id @default(cuid())
+  email String
+  token String @unique
+  expires_at DateTime
+
+
+  @@unique([email, token])
 }
 
 model Post {
