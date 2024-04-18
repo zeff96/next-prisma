@@ -4,6 +4,7 @@ import { AuthError } from "next-auth";
 import { LoginSchema } from "@/schemas";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { getUserByEmail } from "@/data/user";
 
 export const authenticate = async (_prevState, formData) => {
   const validatedFields = LoginSchema.safeParse({
@@ -18,6 +19,16 @@ export const authenticate = async (_prevState, formData) => {
   }
 
   const { email, password } = validatedFields.data;
+
+  const existingUser = await getUserByEmail(email);
+
+  if (!existingUser || !existingUser.email || !existingUser.password) {
+    return { errors: "Invalid credetials!" };
+  }
+
+  if (!existingUser.emailVerified) {
+    return { errors: "Please verify your account!" };
+  }
 
   try {
     await signIn("credentials", {
