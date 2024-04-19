@@ -69,7 +69,7 @@ export const SignupForm = () => {
         </div>
         <hr />
         <Social />
-        <div className="text-center">
+        <div className="text-center underline">
           <Link href="/auth/login">Already registered?</Link>
         </div>
       </form>
