@@ -72,8 +72,11 @@ export const LoginForm = () => {
           <Link href="/auth/registration">Don't have account?</Link>
         </div>
         <div className="text-center underline">
+          <Link href="/auth/reset_password">Forgot password?</Link>
+        </div>
+        <div className="text-center underline">
           <Link href="/auth/confirmation">
-            Didn't receive confirmation email? resend
+            Didn't receive confirmation email?
           </Link>
         </div>
       </form>
