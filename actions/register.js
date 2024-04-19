@@ -4,6 +4,8 @@ import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma/prisma";
 import { RegisterSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
+import { generateVerificationToken } from "@/lib/tokens";
+import { sendVerificationEmail } from "@/data/mailer";
 
 export const register = async (_prevState, formData) => {
   const validatedFields = RegisterSchema.safeParse({
@@ -33,8 +35,6 @@ export const register = async (_prevState, formData) => {
 
   const existingUser = await getUserByEmail(email);
 
-  console.log(existingUser);
-
   if (existingUser) {
     return { errors: "Email already used!" };
   }
@@ -46,5 +46,8 @@ export const register = async (_prevState, formData) => {
       password: hashedPassword,
     },
   });
-  return { message: "User created!" };
+
+  const verificationToken = await generateVerificationToken(email);
+  await sendVerificationEmail(verificationToken.email, verificationToken.token);
+  return { message: "verification token sent!" };
 };
