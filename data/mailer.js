@@ -26,3 +26,18 @@ export const sendVerificationEmail = async (email, token) => {
     console.log(error);
   }
 };
+
+export const sendResetPassword = async (email, token) => {
+  const emailLink = `http://localhost:3000/auth/edit_password?token=${token}`;
+
+  try {
+    await transporter.sendMail({
+      from: user,
+      to: email,
+      subject: "Password reset link",
+      html: `<p>Click <a href="${emailLink}">here</a> to reset your password</p>`,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
