@@ -1,16 +1,5 @@
-"use client";
-
-import { useSession } from "next-auth/react";
+import { Posts } from "./posts/get/Post";
 
 export default function Home() {
-  const { data: session } = useSession();
-
-  if (session) {
-    return (
-      <>
-        <h2>{session.user.name}</h2>
-        <p>{session.user.email}</p>
-      </>
-    );
-  }
+  return <Posts />;
 }
