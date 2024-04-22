@@ -3,6 +3,7 @@
 import { PostSchema } from "@/schemas";
 import { generateNotifications } from "@/lib/notifications";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export const createPost = async (_prevState, formData) => {
   const validatedFields = PostSchema.safeParse({
@@ -51,6 +52,7 @@ export const createPost = async (_prevState, formData) => {
           );
         })
       );
+      revalidatePath("/", "/notifications");
       return { message: "Post created!" };
     });
     return result;
