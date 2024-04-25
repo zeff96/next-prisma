@@ -9,7 +9,6 @@ export const createPost = async (_prevState, formData) => {
   const validatedFields = PostSchema.safeParse({
     userId: formData.get("userId"),
     username: formData.get("username"),
-    title: formData.get("title"),
     body: formData.get("body"),
   });
 
@@ -24,7 +23,7 @@ export const createPost = async (_prevState, formData) => {
     }
   }
 
-  const { userId, username, title, body } = validatedFields.data;
+  const { userId, username, body } = validatedFields.data;
 
   console.log(username);
 
@@ -35,7 +34,6 @@ export const createPost = async (_prevState, formData) => {
       const post = await tx.post.create({
         data: {
           userId,
-          title,
           body,
         },
       });
