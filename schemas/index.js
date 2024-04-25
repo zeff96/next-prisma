@@ -48,6 +48,5 @@ export const RegisterSchema = z.object({
 export const PostSchema = z.object({
   userId: z.string().trim(),
   username: z.string().trim(),
-  title: z.string().trim(),
   body: z.string().trim(),
 });
