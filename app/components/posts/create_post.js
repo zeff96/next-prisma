@@ -23,18 +23,6 @@ export const CreatePostForm = ({ userId, username }) => {
           <input type="hidden" name="username" value={username} />
         </div>
         <div>
-          <label htmlFor="title">
-            Title
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Post title"
-              className="w-full block border rounded-lg focus:outline-none focus:ring focus:ring-gray-300 py-2 px-4"
-            />
-          </label>
-        </div>
-        <div>
           <label htmlFor="body">
             Body
             <textarea
