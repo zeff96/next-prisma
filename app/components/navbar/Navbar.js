@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ButtonWrapper } from "../buttonWrapper/button-wrapper";
 import { SignOutButton } from "../buttonWrapper/signout-wrapper";
 import { auth } from "@/auth";
+import { navItems } from "./nav-items";
 
 const Navbar = async () => {
   const session = await auth();
@@ -12,14 +13,13 @@ const Navbar = async () => {
     <header className="w-full bg-white p-3">
       <nav>
         <ul className="grid grid-flow-col justify-items-center">
-          <div className="flex gap-2">
-            <li>
-              <Link href="/">Posts</Link>
-            </li>
-            <li>
-              <Link href="/notifications">Notifications</Link>
-            </li>
-          </div>
+          {navItems.map((item) => (
+            <div key={item.name} className="flex gap-2">
+              <li>
+                <Link href={`${item.path}`}>{item.icon}</Link>
+              </li>
+            </div>
+          ))}
           <div className="justify-self-end">
             {session ? (
               <li>
