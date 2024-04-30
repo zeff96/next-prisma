@@ -16,7 +16,9 @@ const Navbar = async () => {
           {navItems.map((item) => (
             <div key={item.name} className="flex gap-2">
               <li>
-                <Link href={`${item.path}`}>{item.icon}</Link>
+                <Link href={`${item.path}`} className="text-xl">
+                  {item.icon}
+                </Link>
               </li>
             </div>
           ))}
