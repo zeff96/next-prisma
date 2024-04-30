@@ -5,6 +5,7 @@ import { SiBloglovin } from "react-icons/si";
 export const navItems = [
   {
     icon: <SiBloglovin />,
+    path: "/",
   },
   {
     name: "Posts",
