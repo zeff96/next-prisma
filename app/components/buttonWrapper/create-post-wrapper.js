@@ -9,5 +9,5 @@ export const CreatePostButtonWrapper = ({ children }) => {
     router.push("/posts/add");
   };
 
-  return <span onClick={onClick}>{children}</span>;
+  return <span onFocus={onClick}>{children}</span>;
 };
