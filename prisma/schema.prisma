@@ -65,7 +65,6 @@ model VerificationToken {
 model Post {
   id String @id @default(cuid())
   userId       String
-  title String
   body String @db.Text
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   comments Comment[]
@@ -97,4 +96,5 @@ model Notification {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
   read Boolean @default(false)
+  channel String?
 }
