@@ -7,12 +7,16 @@ export default async function Home() {
   return (
     <main className="w-full min-h-screen flex flex-col items-center py-5 bg-gray-100">
       <div className="w-1/2 bg-white rounded-lg  p-3">
-        <Posts />
         {session && (
           <CreatePostButtonWrapper>
-            <button>Create post</button>
+            <input
+              type="text"
+              placeholder="What is on your mind?"
+              className="w-full border border-solid border-gray-200 rounded-2xl py-2 px-4 mb-3"
+            />
           </CreatePostButtonWrapper>
         )}
+        <Posts />
       </div>
     </main>
   );
