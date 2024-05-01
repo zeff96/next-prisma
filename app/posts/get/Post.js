@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/data/posts";
 import React from "react";
+import Social from "./social/Social";
 
 export const Posts = async () => {
   const posts = await getAllPosts();
@@ -9,12 +10,17 @@ export const Posts = async () => {
   }
 
   return (
-    <div>
+    <>
       {posts.map((post) => (
-        <div key={post.id}>
+        <div
+          key={post.id}
+          className="border border-solid border-gray-300 rounded-2xl p-3 mb-3"
+        >
           <p>{post.body}</p>
+          <hr className="my-3" />
+          <Social />
         </div>
       ))}
-    </div>
+    </>
   );
 };
