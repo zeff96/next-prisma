@@ -25,8 +25,6 @@ export const createPost = async (_prevState, formData) => {
 
   const { userId, username, body } = validatedFields.data;
 
-  console.log(username);
-
   try {
     const prisma = new PrismaClient();
 
