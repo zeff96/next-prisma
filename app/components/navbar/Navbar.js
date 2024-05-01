@@ -5,23 +5,29 @@ import { ButtonWrapper } from "../buttonWrapper/button-wrapper";
 import { SignOutButton } from "../buttonWrapper/signout-wrapper";
 import { auth } from "@/auth";
 import { navItems } from "./nav-items";
+import { SiBloglovin } from "react-icons/si";
 
 const Navbar = async () => {
   const session = await auth();
 
   return (
-    <header className="w-full bg-white p-3">
+    <header className="w-full bg-white">
       <nav>
-        <ul className="grid grid-flow-col justify-items-center">
-          {navItems.map((item) => (
-            <div key={item.name} className="flex gap-2">
-              <li>
-                <Link href={`${item.path}`} className="text-xl">
+        <ul className="flex justify-between py-3 px-5">
+          <div>
+            <Link href="/" className="text-2xl">
+              <SiBloglovin />
+            </Link>
+          </div>
+          <div className="flex gap-x-8">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <Link href={`${item.path}`} className="text-2xl">
                   {item.icon}
                 </Link>
               </li>
-            </div>
-          ))}
+            ))}
+          </div>
           <div className="justify-self-end">
             {session ? (
               <li>
