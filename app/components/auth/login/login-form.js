@@ -16,10 +16,10 @@ export const LoginForm = () => {
       : "";
   const [state, formAction] = useFormState(authenticate, undefined);
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-gray-100">
+    <div className="w-full h-screen flex items-center justify-center">
       <form
         action={formAction}
-        className="w-[400px] bg-white flex flex-col space-y-4 p-4 rounded-lg shadow-md "
+        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md "
       >
         <h3 className="text-center">Welcome back</h3>
         <div>
