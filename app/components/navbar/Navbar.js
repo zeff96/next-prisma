@@ -11,7 +11,7 @@ const Navbar = async () => {
   const session = await auth();
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full">
       <nav>
         <ul className="flex justify-between py-3 px-5">
           <div>
