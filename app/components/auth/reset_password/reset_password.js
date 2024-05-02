@@ -9,10 +9,10 @@ import { resetPassword } from "@/actions/reset_password";
 export const ResetPassword = () => {
   const [state, action] = useFormState(resetPassword, undefined);
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-gray-100">
+    <div className="w-full h-screen flex items-center justify-center">
       <form
         action={action}
-        className="w-[400px] bg-white flex flex-col space-y-4 p-4 rounded-lg shadow-md "
+        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md "
       >
         <h3 className="text-center">Reset password</h3>
         <div>
