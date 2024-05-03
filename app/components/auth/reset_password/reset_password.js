@@ -12,7 +12,7 @@ export const ResetPassword = () => {
     <div className="w-full h-screen flex items-center justify-center">
       <form
         action={action}
-        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md "
+        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md text-gray-500"
       >
         <h3 className="text-center">Reset password</h3>
         <div>

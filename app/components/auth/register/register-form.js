@@ -13,7 +13,7 @@ export const SignupForm = () => {
     <div className="w-full h-screen flex items-center justify-center">
       <form
         action={formAction}
-        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md "
+        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md text-gray-500"
       >
         <h3 className="text-center">Create account</h3>
         <div>
