@@ -10,10 +10,10 @@ import { CreatePostButton } from "./create-post-button";
 export const CreatePostForm = ({ userId, username }) => {
   const [state, formAction] = useFormState(createPost, undefined);
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-gray-100">
+    <div className="w-full h-screen flex items-center justify-center">
       <form
         action={formAction}
-        className="w-[400px] bg-white flex flex-col space-y-4 p-4 rounded-lg shadow-md "
+        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md "
       >
         <h3 className="text-center">Add post</h3>
         <div>
@@ -29,7 +29,7 @@ export const CreatePostForm = ({ userId, username }) => {
               name="body"
               id="body"
               placeholder="Post body"
-              className="w-full block border rounded-lg focus:outline-none focus:ring focus:ring-gray-300 py-2 px-4"
+              className="w-full block border rounded-lg focus:outline-none focus:ring focus:ring-gray-300 py-2 px-4 text-gray-500"
             ></textarea>
           </label>
         </div>
