@@ -50,3 +50,9 @@ export const PostSchema = z.object({
   username: z.string().trim(),
   body: z.string().trim(),
 });
+
+export const LikeSchema = z.object({
+  userId: z.string().trim(),
+  postId: z.string().trim(),
+  username: z.string().trim(),
+});
