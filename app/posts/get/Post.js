@@ -6,8 +6,13 @@ import { getAllPosts } from "@/data/posts";
 import Social from "./social/Social";
 import { TimeAgo } from "@/app/components/timeAgo/TimeAgo";
 import { compareDesc } from "date-fns";
+import { auth } from "@/auth";
+import { LikesPage } from "@/app/like/LikesPage";
 
 export const Posts = async () => {
+  const session = await auth();
+  const user = session?.user;
+
   const posts = await getAllPosts();
 
   if (posts.length === 0) {
@@ -42,9 +47,14 @@ export const Posts = async () => {
               <TimeAgo timestamp={post.created_at} />
             </div>
           </div>
-          <p>{post.body}</p>
+          <p className="mb-3">{post.body}</p>
+          <div>
+            <LikesPage count={post._count.likes} />
+          </div>
           <hr className="my-3" />
-          <Social />
+          {session && (
+            <Social userId={user.id} postId={post.id} username={user.name} />
+          )}
         </div>
       ))}
     </>
