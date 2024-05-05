@@ -56,3 +56,10 @@ export const LikeSchema = z.object({
   postId: z.string().trim(),
   username: z.string().trim(),
 });
+
+export const CommentSchema = z.object({
+  postId: z.string().trim(),
+  body: z.string().trim(),
+  userId: z.string().trim(),
+  username: z.string().trim(),
+});
