@@ -1,8 +1,10 @@
 import React from "react";
 import { useFormState } from "react-dom";
-import { createComment } from "@/actions/comments";
 
-export const commentsForm = ({ userId, postId, username }) => {
+import { createComment } from "@/actions/comments";
+import { CommentsButton } from "./comments-button";
+
+export const CommentsForm = ({ userId, postId, username }) => {
   const [state, action] = useFormState(createComment, undefined);
   return (
     <form action={action}>
@@ -23,7 +25,7 @@ export const commentsForm = ({ userId, postId, username }) => {
           {state?.errors}
         </p>
       )}
-      <button type="submit">Comment</button>
+      <CommentsButton />
     </form>
   );
 };
