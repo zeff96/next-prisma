@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
+import { GoHome } from "react-icons/go";
+import { IoNotificationsCircleOutline } from "react-icons/io5";
+import { SiBloglovin } from "react-icons/si";
+
 import { ButtonWrapper } from "../buttonWrapper/button-wrapper";
 import { SignOutButton } from "../buttonWrapper/signout-wrapper";
 import { auth } from "@/auth";
-import { navItems } from "./nav-items";
-import { SiBloglovin } from "react-icons/si";
 
 const Navbar = async () => {
   const session = await auth();
@@ -20,13 +22,19 @@ const Navbar = async () => {
             </Link>
           </div>
           <div className="flex gap-x-8">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <Link href={`${item.path}`} className="text-2xl">
-                  {item.icon}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link href="/">
+                <GoHome className="text-2xl" />
+              </Link>
+            </li>
+            <li className="relative">
+              <Link href="/notifications">
+                <IoNotificationsCircleOutline className="text-2xl" />
+                <span class="w-5 h-5 px-1 bg-teal-500 rounded-full text-center text-white text-sm absolute -top-2 -end-2">
+                  3
+                </span>
+              </Link>
+            </li>
           </div>
           <div className="justify-self-end">
             {session ? (
