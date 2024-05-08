@@ -30,7 +30,7 @@ const Navbar = async () => {
             <li className="relative">
               <Link href="/notifications">
                 <IoNotificationsCircleOutline className="text-2xl" />
-                <span class="w-5 h-5 px-1 bg-teal-500 rounded-full text-center text-white text-sm absolute -top-2 -end-2">
+                <span className="w-5 h-5 px-1 bg-teal-500 rounded-full text-center text-white text-sm absolute -top-2 -end-2">
                   3
                 </span>
               </Link>
