@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormStatus } from "react-dom";
+import { AiOutlineSend } from "react-icons/ai";
 
 export const CommentsButton = () => {
   const { pending } = useFormStatus();
@@ -7,9 +8,9 @@ export const CommentsButton = () => {
     <button
       type="submit"
       aria-disabled={pending}
-      className="w-full bg-zinc-900 py-2 px-4 text-white rounded-lg hover:bg hover:bg-zinc-500 focus:outline-none"
+      className="absolute bottom-3 right-5 hover:text-blue-500 hover:bg-gray-800 hover:rounded-full p-2"
     >
-      Comment
+      <AiOutlineSend />
     </button>
   );
 };
