@@ -6,7 +6,7 @@ export const CreatePostButtonWrapper = ({ children }) => {
   const router = useRouter();
 
   const onClick = () => {
-    router.push("/posts/add");
+    router.push("/posts");
   };
 
   return (
