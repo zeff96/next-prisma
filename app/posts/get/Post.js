@@ -3,11 +3,12 @@ import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 
 import { getAllPosts } from "@/data/posts";
-import Social from "./social/Social";
+import { Social } from "./social/Social";
 import { TimeAgo } from "@/app/components/timeAgo/TimeAgo";
 import { compareDesc } from "date-fns";
 import { auth } from "@/auth";
 import { LikesPage } from "@/app/like/LikesPage";
+import { CommentsCount } from "@/app/components/comments/CommentsCount";
 
 export const Posts = async () => {
   const session = await auth();
@@ -35,8 +36,8 @@ export const Posts = async () => {
               <Image
                 src={post.user.image}
                 alt={post.user.name}
-                width={50}
-                height={50}
+                width={40}
+                height={40}
                 style={{ borderRadius: "50%" }}
               />
             ) : (
@@ -47,9 +48,14 @@ export const Posts = async () => {
               <TimeAgo timestamp={post.created_at} />
             </div>
           </div>
-          <p className="mb-3">{post.body}</p>
-          <div>
+          <p className="mb-3">
+            {post.body.length > 100
+              ? `${post.body.substring(0, 100)}...`
+              : post.body}
+          </p>
+          <div className="flex justify-between">
             <LikesPage count={post._count.likes} />
+            <CommentsCount count={post._count.comments} />
           </div>
           <hr className="my-3" />
           {session && (
