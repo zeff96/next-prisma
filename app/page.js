@@ -16,8 +16,8 @@ export default async function Home() {
               <Image
                 src={session.user.image}
                 alt={session.user.name}
-                width={50}
-                height={50}
+                width={40}
+                height={40}
                 style={{ borderRadius: "50%" }}
               />
             ) : (
@@ -26,7 +26,7 @@ export default async function Home() {
             <CreatePostButtonWrapper>
               <input
                 type="text"
-                placeholder="What is on your mind?"
+                placeholder={`What is on your mind ${session?.user?.name}?`}
                 className="w-full border border-solid border-gray-200 rounded-2xl py-3 px-4"
               />
             </CreatePostButtonWrapper>
