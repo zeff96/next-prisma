@@ -9,7 +9,7 @@ import { CommentsButton } from "./comments-button";
 export const CommentsForm = ({ userId, postId, username }) => {
   const [state, action] = useFormState(createComment, undefined);
   return (
-    <form action={action} className="flex-1 z-100">
+    <form action={action}>
       <input type="hidden" name="userId" value={userId} />
       <input type="hidden" name="postId" value={postId} />
       <input type="hidden" name="username" value={username} />
