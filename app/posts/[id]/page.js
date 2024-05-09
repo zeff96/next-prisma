@@ -9,6 +9,7 @@ import { Social } from "../get/social/Social";
 import { LikesPage } from "@/app/like/LikesPage";
 import { CommentsForm } from "@/app/components/comments/comments-form";
 import { CommentsCount } from "@/app/components/comments/CommentsCount";
+import { GetComments } from "@/app/components/comments/get-comments";
 
 const Page = async ({ params }) => {
   const { id } = params;
@@ -19,8 +20,8 @@ const Page = async ({ params }) => {
   const post = await getPostById(id);
 
   return (
-    <div className="w-full flex justify-center py-3">
-      <div className="w-1/2 border border-solid border-gray-300 rounded-2xl p-3 mb-3">
+    <div className="w-full h-screen flex justify-center py-3">
+      <div className="w-1/2 h-5/6 border border-solid border-gray-300 rounded-2xl p-3 mb-3 overflow-y-auto relative">
         <div className="flex items-center gap-x-2 mb-3">
           {post.user.image ? (
             <Image
@@ -48,6 +49,7 @@ const Page = async ({ params }) => {
           <Social userId={user.id} postId={post.id} username={user.name} />
         )}
         <hr className="my-3" />
+        <GetComments postId={post.id} />
         <div className="flex items-center gap-x-2">
           {session?.user.image ? (
             <Image
@@ -60,11 +62,13 @@ const Page = async ({ params }) => {
           ) : (
             <FaUserCircle className="text-3xl" />
           )}
-          <CommentsForm
-            userId={user.id}
-            postId={post.id}
-            username={user.name}
-          />
+          <div className="flex-1">
+            <CommentsForm
+              userId={user.id}
+              postId={post.id}
+              username={user.name}
+            />
+          </div>
         </div>
       </div>
     </div>
