@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/prisma/prisma";
 import { CommentSchema } from "@/schemas";
+import { revalidatePath } from "next/cache";
 
 export const createComment = async (_prevState, formData) => {
   const validatedFields = CommentSchema.safeParse({
@@ -47,7 +48,7 @@ export const createComment = async (_prevState, formData) => {
           });
         })
       );
-
+      revalidatePath("/", `/posts/${postId}, "/notifications`);
       return { message: "Comment created successfully" };
     });
     return result;
