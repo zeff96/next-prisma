@@ -41,11 +41,7 @@ export const createPost = async (_prevState, formData) => {
 
       await Promise.all(
         users.map(async (user) => {
-          await generateNotifications(
-            "postCreated",
-            `${username} recently shared a post`,
-            user.id
-          );
+          await generateNotifications("post", user.id);
         })
       );
       revalidatePath("/", "/notifications");
