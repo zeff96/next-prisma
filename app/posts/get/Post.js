@@ -21,7 +21,7 @@ export const Posts = async () => {
   }
 
   const orderedPosts = posts.sort((a, b) =>
-    compareDesc(new Date(a.created_at), new Date(b.created_at))
+    compareDesc(new Date(a.createdAt), new Date(b.createdAt))
   );
 
   return (
@@ -45,7 +45,7 @@ export const Posts = async () => {
             )}
             <div>
               <span className="block font-bold">{post.user.name}</span>
-              <TimeAgo timestamp={post.created_at} />
+              <TimeAgo timestamp={post.createdAt} />
             </div>
           </div>
           <p className="mb-3">
