@@ -1,5 +1,6 @@
 "use server";
 
+import { generateNotifications } from "@/lib/notifications";
 import prisma from "@/lib/prisma/prisma";
 import { CommentSchema } from "@/schemas";
 import { revalidatePath } from "next/cache";
@@ -38,14 +39,7 @@ export const createComment = async (_prevState, formData) => {
 
       await Promise.all(
         users.map(async (user) => {
-          await tx.notification.create({
-            data: {
-              userId: user.id,
-              type: "comment",
-              postId,
-              content: `${username} commented on your post`,
-            },
-          });
+          await generateNotifications("comment", user.id, postId);
         })
       );
       revalidatePath("/", `/posts/${postId}, "/notifications`);
