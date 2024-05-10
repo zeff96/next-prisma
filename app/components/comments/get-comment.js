@@ -13,7 +13,7 @@ export const Comment = ({ comment }) => {
           <h4 className="font-semibold text-gray-100">{comment.user.name}</h4>
           <p className="text-sm text-gray-100">{comment.body}</p>
         </div>
-        <TimeAgo timestamp={comment.created_at} />
+        <TimeAgo timestamp={comment.createdAt} />
       </div>
     </div>
   );
