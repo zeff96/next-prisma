@@ -7,7 +7,7 @@ export const GetComments = async ({ postId }) => {
   const comments = await getCommentsByPostId(postId);
 
   const orderedPosts = comments.sort((a, b) =>
-    compareDesc(new Date(a.created_at), new Date(b.created_at))
+    compareDesc(new Date(a.createdAt), new Date(b.createdAt))
   );
 
   return (
