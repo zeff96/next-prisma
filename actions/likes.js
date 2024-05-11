@@ -36,11 +36,7 @@ export const createLike = async (_prevState, formData) => {
 
       await Promise.all(
         users.map(async (user) => {
-          await generateNotifications(
-            "likeCreated",
-            `${username} recently liked a post`,
-            user.id
-          );
+          await generateNotifications("like", user.id, postId);
         })
       );
       revalidatePath("/", "/notifications");
