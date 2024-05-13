@@ -6,13 +6,12 @@ import { useFormState } from "react-dom";
 import { createComment } from "@/actions/comments";
 import { CommentsButton } from "./comments-button";
 
-export const CommentsForm = ({ userId, postId, username }) => {
+export const CommentsForm = ({ userId, postId }) => {
   const [state, action] = useFormState(createComment, undefined);
   return (
     <form action={action}>
       <input type="hidden" name="userId" value={userId} />
       <input type="hidden" name="postId" value={postId} />
-      <input type="hidden" name="username" value={username} />
       <div className="relative">
         <textarea
           name="body"
