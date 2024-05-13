@@ -99,8 +99,8 @@ model Notification {
   dateCreated DateTime @default(now())
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
-  post        Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId      String?
+  post        Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId      String
   read        Boolean  @default(false)
   channel     String?
 }
