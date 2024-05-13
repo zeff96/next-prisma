@@ -47,19 +47,16 @@ export const RegisterSchema = z.object({
 
 export const PostSchema = z.object({
   userId: z.string().trim(),
-  username: z.string().trim(),
   body: z.string().trim(),
 });
 
 export const LikeSchema = z.object({
   userId: z.string().trim(),
   postId: z.string().trim(),
-  username: z.string().trim(),
 });
 
 export const CommentSchema = z.object({
   postId: z.string().trim(),
   body: z.string().trim(),
   userId: z.string().trim(),
-  username: z.string().trim(),
 });
