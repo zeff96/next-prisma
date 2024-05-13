@@ -7,7 +7,7 @@ import { useFormState } from "react-dom";
 import { createPost } from "@/actions/create_post";
 import { CreatePostButton } from "./create-post-button";
 
-export const CreatePostForm = ({ userId, username }) => {
+export const CreatePostForm = ({ userId }) => {
   const [state, formAction] = useFormState(createPost, undefined);
   return (
     <div className="w-full h-screen flex items-center justify-center">
@@ -18,9 +18,6 @@ export const CreatePostForm = ({ userId, username }) => {
         <h3 className="text-center">Add post</h3>
         <div>
           <input type="hidden" name="userId" value={userId} />
-        </div>
-        <div>
-          <input type="hidden" name="username" value={username} />
         </div>
         <div>
           <label htmlFor="body">
