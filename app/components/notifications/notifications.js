@@ -5,36 +5,61 @@ export const Notifications = async ({ userId }) => {
   const notifications = await getNotifications(userId);
 
   const orderedNotifications = notifications.sort((a, b) =>
-    compareDesc(new Date(a.createdAt), new Date(b.createdAt))
+    compareDesc(new Date(a.dateCreated), new Date(b.dateCreated))
   );
 
   const listNotifications = orderedNotifications.map((notification) => {
-    console.log(notification?.post);
     if (notification.type === "like") {
       return (
         <div key={notification.id} className="notification">
-          <img src={notification.user.image} alt={notification.user.name} />
-          <p>{notification.user.name} liked your post</p>
+          <img
+            src={notification.post.user.image}
+            alt={notification.post.user.name}
+          />
+          <p>
+            {notification.post.user.name} liked a post:{" "}
+            {notification.post.body.length > 100
+              ? `${notification.post.body.slice(0, 100)}...`
+              : notification.post.body}
+          </p>
         </div>
       );
     } else if (notification.type === "comment") {
       return (
         <div key={notification.id} className="notification">
-          <img src={notification.user.image} alt={notification.user.name} />
-          <p>{notification.user.name} commented on your post</p>
+          <img
+            src={notification.post.user.image}
+            alt={notification.post.user.name}
+          />
+          <p>
+            {notification.post.user.name} commented on a post:{" "}
+            {notification.post.body.length > 100
+              ? `${notification.post.body.slice(0, 100)}...`
+              : notification.post.body}
+          </p>
         </div>
       );
     } else if (notification.type === "post") {
       return (
         <div key={notification.id} className="notification">
-          <img src={notification.user.image} alt={notification.user.name} />
+          <img
+            src={notification.post.user.image}
+            alt={notification.post.user.name}
+          />
           <p>
-            {notification.user.name} posted: {notification?.post?.body}
+            {notification.post.user.name} posted:{" "}
+            {notification.post.body.length > 100
+              ? `${notification.post.body.slice(0, 100)}...`
+              : notification.post.body}
           </p>
         </div>
       );
     }
   });
 
-  return <div>{listNotifications}</div>;
+  return (
+    <div className="w-full h-screen flex flex-col items-center py-3">
+      <div className="items-start">{listNotifications}</div>
+    </div>
+  );
 };
