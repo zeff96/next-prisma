@@ -2,13 +2,12 @@
 
 import { PostSchema } from "@/schemas";
 import { generateNotifications } from "@/lib/notifications";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma/prisma";
 import { revalidatePath } from "next/cache";
 
 export const createPost = async (_prevState, formData) => {
   const validatedFields = PostSchema.safeParse({
     userId: formData.get("userId"),
-    username: formData.get("username"),
     body: formData.get("body"),
   });
 
@@ -23,31 +22,27 @@ export const createPost = async (_prevState, formData) => {
     }
   }
 
-  const { userId, username, body } = validatedFields.data;
+  const { userId, body } = validatedFields.data;
 
   try {
-    const prisma = new PrismaClient();
-
-    const result = await prisma.$transaction(async (tx) => {
-      const post = await tx.post.create({
-        data: {
-          userId,
-          body,
-        },
-      });
-      const users = await tx.user.findMany({
-        where: { NOT: { id: userId } },
-      });
-
-      await Promise.all(
-        users.map(async (user) => {
-          await generateNotifications("post", user.id);
-        })
-      );
-      revalidatePath("/", "/notifications");
-      return { message: "Post created!" };
+    const post = await prisma.post.create({
+      data: {
+        userId,
+        body,
+      },
     });
-    return result;
+
+    const users = await prisma.user.findMany({
+      where: { NOT: { id: userId } },
+    });
+
+    await Promise.all(
+      users.map(async (user) => {
+        await generateNotifications("post", user.id, post.id);
+      })
+    );
+    revalidatePath("/", "/notifications");
+    return { message: "Post created!" };
   } catch (error) {
     return { errors: error.message };
   }
