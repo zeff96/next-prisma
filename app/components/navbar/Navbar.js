@@ -8,9 +8,12 @@ import { SiBloglovin } from "react-icons/si";
 import { ButtonWrapper } from "../buttonWrapper/button-wrapper";
 import { SignOutButton } from "../buttonWrapper/signout-wrapper";
 import { auth } from "@/auth";
+import { getNotificationCounts } from "@/lib/notifications";
 
 const Navbar = async () => {
   const session = await auth();
+
+  const count = await getNotificationCounts(session?.user.id);
 
   return (
     <header className="w-full">
@@ -30,8 +33,8 @@ const Navbar = async () => {
             <li className="relative">
               <Link href="/notifications">
                 <IoNotificationsCircleOutline className="text-2xl" />
-                <span className="w-5 h-5 px-1 bg-teal-500 rounded-full text-center text-white text-sm absolute -top-2 -end-2">
-                  3
+                <span className="w-5 h-5 px-1 bg-red-500 rounded-full text-center text-white text-sm absolute -top-2 -end-2">
+                  {count}
                 </span>
               </Link>
             </li>
