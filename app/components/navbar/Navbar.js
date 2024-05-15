@@ -33,9 +33,11 @@ const Navbar = async () => {
             <li className="relative">
               <Link href="/notifications">
                 <IoNotificationsCircleOutline className="text-2xl" />
-                <span className="w-5 h-5 px-1 bg-red-500 rounded-full text-center text-white text-sm absolute -top-2 -end-2">
-                  {count}
-                </span>
+                {session?.user && (
+                  <span className="w-5 h-5 px-1 bg-red-500 rounded-full text-center text-white text-sm absolute -top-2 -end-2">
+                    {count}
+                  </span>
+                )}
               </Link>
             </li>
           </div>
