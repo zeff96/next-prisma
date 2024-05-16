@@ -1,6 +1,9 @@
 import { getNotifications } from "@/lib/notifications";
 import { compareDesc } from "date-fns";
 import Image from "next/image";
+import { FaUserCircle } from "react-icons/fa";
+import { NotificationButtonWrapper } from "../buttonWrapper/notification-button-wrapper";
+import { NotificationItem } from "./notification-item";
 
 export const Notifications = async ({ userId }) => {
   const notifications = await getNotifications(userId);
@@ -9,10 +12,18 @@ export const Notifications = async ({ userId }) => {
     compareDesc(new Date(a.dateCreated), new Date(b.dateCreated))
   );
 
-  const listNotifications = orderedNotifications.map((notification) => {
-    if (notification.type === "like") {
-      return (
-        <div key={notification.id} className="flex gap-x-2 items-center">
+  const listNotifications = orderedNotifications.map((notification) => (
+    <NotificationButtonWrapper
+      id={notification.id}
+      postId={notification.postId}
+      key={notification.id}
+    >
+      <li
+        className={`flex gap-x-2 items-center ${
+          notification.read ? "" : "bg-teal-500"
+        } p-3 rounded-b-2xl`}
+      >
+        {notification.post.user.image ? (
           <Image
             src={notification.post.user.image}
             alt={notification.post.user.name}
@@ -20,59 +31,17 @@ export const Notifications = async ({ userId }) => {
             height={40}
             style={{ borderRadius: "50%" }}
           />
-          <p>
-            <span className="font-bold">{notification.post.user.name}</span>{" "}
-            liked a post:{" "}
-            {notification.post.body.length > 100
-              ? `${notification.post.body.slice(0, 100)}...`
-              : notification.post.body}
-          </p>
-        </div>
-      );
-    } else if (notification.type === "comment") {
-      return (
-        <div key={notification.id} className="flex gap-x-2 items-center">
-          <Image
-            src={notification.post.user.image}
-            alt={notification.post.user.name}
-            width={40}
-            height={40}
-            style={{ borderRadius: "50%" }}
-          />
-          <p>
-            <span className="font-bold">{notification.post.user.name}</span>{" "}
-            commented on a post:{" "}
-            {notification.post.body.length > 100
-              ? `${notification.post.body.slice(0, 100)}...`
-              : notification.post.body}
-          </p>
-        </div>
-      );
-    } else if (notification.type === "post") {
-      return (
-        <div key={notification.id} className="flex gap-x-2 items-center">
-          <Image
-            src={notification.post.user.image}
-            alt={notification.post.user.name}
-            width={40}
-            height={40}
-            style={{ borderRadius: "50%" }}
-          />
-          <p>
-            <span className="font-bold">{notification.post.user.name}</span>{" "}
-            posted:{" "}
-            {notification.post.body.length > 100
-              ? `${notification.post.body.slice(0, 100)}...`
-              : notification.post.body}
-          </p>
-        </div>
-      );
-    }
-  });
+        ) : (
+          <FaUserCircle className="w-[100px] h-[100px]" />
+        )}
+        <NotificationItem notification={notification} />
+      </li>
+    </NotificationButtonWrapper>
+  ));
 
   return (
     <div className="w-full h-screen flex flex-col items-center py-3">
-      <div className="w-1/3 items-start">{listNotifications}</div>
+      <ul className="w-1/3 items-start">{listNotifications}</ul>
     </div>
   );
 };
