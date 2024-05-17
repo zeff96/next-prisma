@@ -1,14 +1,12 @@
 import React from "react";
 import Link from "next/link";
-
 import { GoHome } from "react-icons/go";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { SiBloglovin } from "react-icons/si";
 
-import { ButtonWrapper } from "../buttonWrapper/button-wrapper";
-import { SignOutButton } from "../buttonWrapper/signout-wrapper";
 import { auth } from "@/auth";
 import { getNotificationCounts } from "@/lib/notifications";
+import { AuthenticationComponent } from "./login-logout";
 
 const Navbar = async () => {
   const session = await auth();
@@ -41,19 +39,7 @@ const Navbar = async () => {
               </Link>
             </li>
           </div>
-          <div className="justify-self-end">
-            {session ? (
-              <li>
-                <SignOutButton />
-              </li>
-            ) : (
-              <li>
-                <ButtonWrapper>
-                  <button type="button">Login</button>
-                </ButtonWrapper>
-              </li>
-            )}
-          </div>
+          <AuthenticationComponent session={session} />
         </ul>
       </nav>
     </header>
