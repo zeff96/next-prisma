@@ -15,10 +15,10 @@ export const EmailVerificationForm = () => {
   const token = searchParams.get("token");
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-gray-100">
+    <div className="w-full h-screen flex items-center justify-center">
       <form
         action={action}
-        className="w-[400px] bg-white flex flex-col space-y-4 p-4 rounded-lg shadow-md "
+        className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md "
       >
         <h3 className="text-center">Verify email account</h3>
         <div>
