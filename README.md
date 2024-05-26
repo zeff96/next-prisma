@@ -22,7 +22,7 @@
 
 # BLOG SOCIAL MEDIA APP
 
-This is a website that allow users to get bitcoins from the api and allows users to get details of each bitcoin from the api as well
+The Blog Social Media App is a platform designed for users to express themselves, share their thoughts, and engage with a community of like-minded individuals. It serves as a versatile space where users can create and publish blog posts, share multimedia content, and interact with others through comments and likes.
 
 ## Built With
 
