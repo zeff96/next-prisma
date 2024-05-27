@@ -1,32 +1,40 @@
-import React from 'react'
+import React from "react";
 
-import React, { useState, useRef } from 'react';
-import { BiSolidImageAdd, MdOutlineKeyboardVoice, IoMdSend } from 'react-icons/bi'; // Assuming you're using react-icons
+import React, { useState } from "react";
+import {
+  BiSolidImageAdd,
+  MdOutlineKeyboardVoice,
+  IoMdSend,
+} from "react-icons/bi"; // Assuming you're using react-icons
 
 export const ChatInput = () => {
-  const [text, setText] = useState('');
-  const textAreaRef = useRef(null);
+  const [text, setText] = useState("");
+  const [textAreaHeight, setTextAreaHeight] = useState("auto");
 
-  const handleTextAreaChange = (event) => {
+  const handleChange = (event) => {
     setText(event.target.value);
+    adjustTextAreaHeight(event.target);
+  };
+
+  const adjustTextAreaHeight = (textArea) => {
+    textArea.style.height = "auto";
+    textArea.style.height = `${textArea.scrollHeight}px`;
+    setTextAreaHeight(`${textArea.scrollHeight}px`);
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-grow relative">
-        <textarea
-          ref={textAreaRef}
-          value={text}
-          onChange={handleTextAreaChange}
-          className="flex-grow resize-none rounded-2xl border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <div className="absolute inset-y-0 flex items-center right-2">
-          <BiSolidImageAdd className="mr-2 text-gray-500 hover:text-blue-500" />
-          <MdOutlineKeyboardVoice className="mr-2 text-gray-500 hover:text-blue-500" />
-          {text && <IoMdSend />}
-        </div>
+    <div className="relative w-2/5">
+      <textarea
+        className="resize-none w-full border rounded-lg p-2 pb-10 overflow-hidden" // Added pr-10 for the send icon space
+        value={text}
+        onChange={handleChange}
+        style={{ height: textAreaHeight }}
+      />
+      <div className="absolute right-2 bottom-2 font-bold">
+        <BiSolidImageAdd />
+        <MdOutlineKeyboardVoice />
+        <IoMdSend />
       </div>
     </div>
   );
 };
-
