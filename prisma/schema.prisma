@@ -50,6 +50,7 @@ model User {
   comments      Comment[]
   likes         Like[]
   notifications Notification[]
+  lastViewedNotifications DateTime?
 }
 
 model VerificationToken {
