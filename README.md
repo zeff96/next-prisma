@@ -26,14 +26,10 @@ The Blog Social Media App is a platform designed for users to express themselves
 
 ## Built With
 
-- HTML(HTML-5).
-- CSS(Flexbox - grid).
-- javaScript (Vanilla JS).
-- Github.
 - React.
-- Redux
-- Rest API
-- Linters.
+- Tailwind CSS.
+- Nodejs.
+- Authjs.
 
 ## Key Features:
 
