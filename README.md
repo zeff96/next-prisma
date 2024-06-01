@@ -33,11 +33,11 @@ The Blog Social Media App is a platform designed for users to express themselves
 
 ## Key Features:
 
-- User can view bitcoins per category and select each categories to view their details
+- Users to express themselves, share their thoughts, and engage with a community of like-minded individuals. It serves as a versatile space where users can create and publish blog posts, share multimedia content, and interact with others through comments and likes
 
 ## Live Demo:
 
-[Live Demo](https://bitcoins.onrender.com/)
+coming soon
 
 ## Getting Started
 
