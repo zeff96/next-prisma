@@ -46,7 +46,7 @@ coming soon
 1- clone Repo.
 
 ```sh
-    git@github.com:zeff96/crypto_currency_app.git
+    git@github.com:zeff96/next-prisma.git
 ```
 
 ### Prerequisites:
@@ -74,13 +74,11 @@ coming soon
 
 ### Run tests
 
-Use linters for REACT/REDUX to perform test on this project
+Use linters for REACT to perform test on this project
 
 ## Deployment
 
-```sh
-  - onrender
-```
+Not yet deployed
 
 ## Authors
 
