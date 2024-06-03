@@ -69,7 +69,7 @@ coming soon
 ### Usage
 
 ```sh
-  use git bash to open in Vs code;
+  use npm run dev  to run on browswer;
 ```
 
 ### Run tests
@@ -96,7 +96,7 @@ Not yet deployed
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/zeff96/crypto_currency_app/issues).
+Feel free to check the [issues page](https://github.com/zeff96/next-prisma/issues).
 
 ## Show your support
 
