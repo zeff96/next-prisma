@@ -5,7 +5,7 @@ import { generateNotifications } from "@/lib/notifications";
 import prisma from "@/lib/prisma/prisma";
 import { revalidatePath } from "next/cache";
 
-export const createPost = async (_prevState, formData) => {
+export const createPost = async (formData) => {
   const validatedFields = PostSchema.safeParse({
     userId: formData.get("userId"),
     body: formData.get("body"),
