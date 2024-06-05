@@ -11,7 +11,10 @@ import { AuthenticationComponent } from "./login-logout";
 const Navbar = async () => {
   const session = await auth();
 
-  const count = await getNotificationCounts(session?.user.id);
+  let count;
+  if (session) {
+    count = await getNotificationCounts(session?.user.id);
+  }
 
   return (
     <header className="w-full">
