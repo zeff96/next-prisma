@@ -1,15 +1,26 @@
 "use client";
 
-import React from "react";
-import { useFormState } from "react-dom";
+import React, { useRef } from "react";
 
 import { createComment } from "@/actions/comments";
 import { CommentsButton } from "./comments-button";
+import toast from "react-hot-toast";
 
 export const CommentsForm = ({ userId, postId }) => {
-  const [state, action] = useFormState(createComment, undefined);
+  const ref = useRef();
   return (
-    <form action={action}>
+    <form
+      ref={ref}
+      action={async (formData) => {
+        const res = await createComment(formData);
+        if (res.errors) {
+          toast.error(res.errors);
+        } else {
+          toast.success(res.message);
+          ref.current.reset();
+        }
+      }}
+    >
       <input type="hidden" name="userId" value={userId} />
       <input type="hidden" name="postId" value={postId} />
       <div className="relative">
@@ -22,11 +33,6 @@ export const CommentsForm = ({ userId, postId }) => {
         ></textarea>
         <CommentsButton />
       </div>
-      {state?.errors && (
-        <p className="w-full py-1 px-4 text-white bg-red-500 rounded-lg">
-          {state?.errors}
-        </p>
-      )}
     </form>
   );
 };
