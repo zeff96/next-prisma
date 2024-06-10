@@ -6,7 +6,7 @@ import { LikeSchema } from "@/schemas";
 import { PrismaClient } from "@prisma/client";
 import { generateNotifications } from "@/lib/notifications";
 
-export const createLike = async (_prevState, formData) => {
+export const createLike = async (formData) => {
   const validatedFields = LikeSchema.safeParse({
     userId: formData.get("userId"),
     postId: formData.get("postId"),
@@ -40,7 +40,7 @@ export const createLike = async (_prevState, formData) => {
         })
       );
       revalidatePath("/", "/notifications");
-      return { message: "Like created!" };
+      return { message: "Liked a post!" };
     });
     return result;
   } catch (error) {
