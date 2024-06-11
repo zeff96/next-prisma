@@ -1,18 +1,24 @@
 "use client";
 
 import React from "react";
-import { useFormState } from "react-dom";
 import { RegistrationButton } from "./signup-button";
 import { register } from "@/actions/register";
 import Link from "next/link";
 import { Social } from "../social/social";
+import toast from "react-hot-toast";
 
 export const SignupForm = () => {
-  const [state, formAction] = useFormState(register, undefined);
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <form
-        action={formAction}
+        action={async (formData) => {
+          const res = await register(formData);
+          if (res.errors) {
+            toast(res.errors);
+          } else {
+            toast(res.message);
+          }
+        }}
         className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md text-gray-500"
       >
         <h3 className="text-center">Create account</h3>
