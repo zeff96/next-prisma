@@ -7,7 +7,7 @@ import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/data/mailer";
 
-export const register = async (_prevState, formData) => {
+export const register = async (formData) => {
   const validatedFields = RegisterSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
