@@ -5,7 +5,7 @@ import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";
 import { z } from "zod";
 
-export const confirmationToken = async (_prevState, formData) => {
+export const confirmationToken = async (formData) => {
   const schema = z.object({
     email: z
       .string({ invalid_type_error: "Invalid email" })
