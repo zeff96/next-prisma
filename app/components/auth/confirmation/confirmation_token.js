@@ -2,16 +2,22 @@
 
 import React from "react";
 import Link from "next/link";
-import { useFormState } from "react-dom";
 import { ConfirmationButton } from "./confirmation-button";
 import { confirmationToken } from "@/actions/confirmation_token";
+import toast from "react-hot-toast";
 
 export const ConfirmationToken = () => {
-  const [state, action] = useFormState(confirmationToken, undefined);
   return (
     <div className="w-full h-screen flex items-center justify-center ">
       <form
-        action={action}
+        action={async (formData) => {
+          const res = await confirmationToken(formData);
+          if (res.errors) {
+            toast(res.errors);
+          } else {
+            toast(res.message);
+          }
+        }}
         className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md text-gray-500"
       >
         <h3 className="text-center">Email token confirmation</h3>
