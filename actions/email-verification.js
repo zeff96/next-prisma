@@ -5,7 +5,7 @@ import { getVerificationTokenToken } from "@/data/verification_token";
 import prisma from "@/lib/prisma/prisma";
 import { z } from "zod";
 
-export const verifyEmail = async (_prevState, formData) => {
+export const verifyEmail = async (formData) => {
   const schema = z.object({
     token: z.string().trim(),
   });
@@ -23,7 +23,7 @@ export const verifyEmail = async (_prevState, formData) => {
   const existingToken = await getVerificationTokenToken(token);
 
   if (!existingToken) {
-    return { error: "Invalid token!" };
+    return { errors: "Invalid token!" };
   }
 
   const hasExpired = new Date(existingToken.expires_at) < new Date();
