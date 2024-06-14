@@ -2,11 +2,11 @@
 
 import React from "react";
 import { useSearchParams } from "next/navigation";
-import { useFormState } from "react-dom";
 import { LogginButton } from "./loggin-button";
 import { authenticate } from "@/actions/login";
 import Link from "next/link";
 import { Social } from "../social/social";
+import toast from "react-hot-toast";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -14,11 +14,17 @@ export const LoginForm = () => {
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Another account already exists with the same e-mail address"
       : "";
-  const [state, formAction] = useFormState(authenticate, undefined);
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <form
-        action={formAction}
+        action={async (formData) => {
+          const res = await authenticate(formData);
+          if (res.errors) {
+            toast.error(res.errors);
+          } else {
+            toast.success(res.message);
+          }
+        }}
         className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md text-gray-500"
       >
         <h3 className="text-center">Welcome back</h3>
