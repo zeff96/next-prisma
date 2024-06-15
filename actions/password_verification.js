@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { getUserByEmail } from "@/data/user";
 import { getVerificationTokenToken } from "@/data/verification_token";
 
-export const passwordVerification = async (_prevState, formData) => {
+export const passwordVerification = async (formData) => {
   const schema = z.object({
     token: z.string().trim(),
     password: z
