@@ -2,16 +2,22 @@
 
 import React from "react";
 import Link from "next/link";
-import { useFormState } from "react-dom";
 import { ResetPasswordButton } from "./reset_password_button";
 import { resetPassword } from "@/actions/reset_password";
+import toast from "react-hot-toast";
 
 export const ResetPassword = () => {
-  const [state, action] = useFormState(resetPassword, undefined);
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <form
-        action={action}
+        action={async (formData) => {
+          const res = await resetPassword(formData);
+          if (res.errors) {
+            toast(res.errors);
+          } else {
+            toast.success(res.message);
+          }
+        }}
         className="w-[400px] flex flex-col space-y-4 p-4 rounded-lg shadow-md text-gray-500"
       >
         <h3 className="text-center">Reset password</h3>
