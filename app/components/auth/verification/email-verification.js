@@ -31,18 +31,6 @@ export const EmailVerificationForm = () => {
           <input type="hidden" name="token" value={token} />
         </div>
         <div>
-          {state?.errors && (
-            <p className="w-full py-1 px-4 text-white bg-red-500 rounded-lg">
-              {state?.errors}
-            </p>
-          )}
-          {state?.message && (
-            <p className="w-full py-1 px-4 text-white bg-green-500 rounded-lg">
-              {state?.message}
-            </p>
-          )}
-        </div>
-        <div>
           <EmailVerificationButton />
         </div>
         <hr />
