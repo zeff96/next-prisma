@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
+import ChatInput from "../inputs/ChatInput";
 
 import { createPost } from "@/actions/create_post";
 import { CreatePostButton } from "./create-post-button";
@@ -32,15 +33,7 @@ export const CreatePostForm = ({ userId }) => {
           <input type="hidden" name="userId" value={userId} />
         </div>
         <div>
-          <label htmlFor="body">
-            Body
-            <textarea
-              name="body"
-              id="body"
-              placeholder="Post body"
-              className="w-full block border rounded-lg focus:outline-none focus:ring focus:ring-gray-300 py-2 px-4 text-gray-500"
-            ></textarea>
-          </label>
+          <ChatInput />
         </div>
         <div>
           <CreatePostButton />
